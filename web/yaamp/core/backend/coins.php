@@ -125,18 +125,13 @@ function BackendCoinsUpdate()
 				$coin->auxpow = true;
 		}
 
-               // Change for segwit
-               if ($coin->usemweb) {
-	           $template = $remote->getblocktemplate('{"rules":["segwit","mweb"]}');
-               }
-
-              else if ($coin->usesegwit) {
-                   $template = $remote->getblocktemplate('{"rules":["segwit"]}');
-               } else {
-                   $template = $remote->getblocktemplate('{}');
-               }
-               // Change for segwit end
-		
+//		if($coin->symbol != 'BTC')
+ //		{
+ //			if($coin->symbol == 'PPC')
+ //				$template = $remote->getblocktemplate('');
+ //			else
+ 			$template = $remote->getblocktemplate('{}');
+ 
 			if($template && isset($template['coinbasevalue']))
 			{
 				$coin->reward = $template['coinbasevalue']/100000000*$coin->reward_mul;
